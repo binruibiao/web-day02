@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--  引入Vue代码文件  -->
+    <script src="vue.min.js"></script>
+</head>
+<body>
+
+<div id="div01">
+<!--  访问Vue实例的数据  -->
+    {{ message }}
+</div>
+
+<script>
+    <!--  新建Vue实例  -->
+    let app01 = new Vue({
+        // 将Vue应用实例挂载到指定的DOM元素上，指定Vue的作用范围
+        // el属性可以指定任意类型的选择器，但是最好使用id选择器
+        el: "#div01",
+        data: {
+            message: "Hello Vue! I am Bian Ruibiao!"
+        }
+    })
+</script>
+</body>
+</html>

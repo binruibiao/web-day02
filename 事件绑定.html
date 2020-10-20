@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.min.js"></script>
+</head>
+<body>
+<div id="div01">
+    <input type="button" value="减小数字" v-on:click="delNum" />
+    <h1>当前数字为：{{ myNumber }}</h1>
+    <input type="button" value="增加数字" v-on:click="addNum" />
+</div>
+
+<div id="div02">
+    <input type="text" placeholder="我是卞瑞彪" v-on:keyup="foo(23, {'name': 'Ruibiao', 'age': 21}, 'tyut')" />
+    <input type="button" value="测试扩展运算符" v-on:click="foo2(1, 2, 3, null, '哈哈')"  />
+</div>
+<script>
+    let app01 = new Vue({
+        el: "#div01",
+        data: {
+            myNumber: 0,
+        },
+        methods: {
+            // es6的语法：属性的简写形式
+            addNum() {
+                this.myNumber++
+                console.log(event)
+            },
+            delNum() {
+                this.myNumber--
+                console.log(event)
+            }
+        }
+    })
+
+    let app02 = new Vue({
+        el: "#div02",
+        data: {
+
+        },
+        methods: {
+            foo(age, obj, school) {
+                console.log(age)
+                console.log(obj)
+                console.log(school)
+            },
+            foo2(...args) {
+                console.log(args)
+            }
+        }
+    })
+    /**
+     * 在Vue中事件绑定是通过“v-on:事件类型 = 事件处理Handler”来完成的
+     * Vue中事件处理统一定义在methods对象中
+     * this关键字指向的是当前Vue实例
+     * **/
+</script>
+</body>
+</html>

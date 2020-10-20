@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.min.js"></script>
+</head>
+<body>
+<div id="div01">
+    <span>我是卞瑞彪</span>
+    <br />
+<!--  v-text：获取Vue中的指定data并将数据以文本的形式渲染到指定标签内部  -->
+    <span v-text="message">我是卞瑞彪</span>
+</div>
+
+<div id="div02">
+<!--  v-html将提取出来的指定字符串解析成html元素  -->
+    <span v-html="message"></span>
+</div>
+
+<script>
+    let app01 = new Vue({
+        el: "#div01",
+        data: {
+            message: {
+                x: "undefined",
+                y: "null",
+                z: "boolean",
+                u: "number",
+                v: "string",
+                w: "Symbol",
+            }
+        }
+    })
+
+    let app02 = new Vue({
+        el: "#div02",
+        data: {
+            message: "<img src='' alt='哈哈' title='乌龟' />"
+        }
+    })
+</script>
+</body>
+</html>

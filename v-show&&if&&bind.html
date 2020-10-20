@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.min.js"></script>
+    <style>
+        .pic {
+            border: 5px #e1005a solid;
+        }
+    </style>
+</head>
+<body>
+<div id="div01">
+    <span v-show="true">{{ message }}</span>
+    <hr />
+    <span v-show="!flag">{{ message }}</span>
+<!--  style="display: none;"  -->
+<!--    <span v-show="{{ flag }}">{{ message }}</span>-->
+</div>
+
+<div id="div02">
+    <h1 v-if="true">中国</h1>
+    <h1 v-if="flag">美国</h1>
+    <h1 v-if="true">日本</h1>
+<!-- v-if做到了真正的条件渲染，而v-show仅仅是修改了css中属性display为none  -->
+    <input type="button" value="点击后美国出现" v-on:click="show" v-if="!flag" />
+    <input type="button" value="点击后美国消失" v-on:click="show" v-else />
+</div>
+
+<div id="div03">
+<!--    <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1603201487871&di=de77988a92a5795de7d77591421c2068&imgtype=0&src=http%3A%2F%2Fqqpublic.qpic.cn%2Fqq_public%2F0%2F0-2335518777-E8DA9058CDBF381AF37564F03A4F03CC%2F0%3Ffmt%3Djpg%26size%3D99%26h%3D615%26w%3D627%26ppv%3D1"-->
+<!--         alt="我爱杨幂" title="杨幂大美女" />-->
+<!--    "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1603201581508&di=9fef6cad16ece4c97b07da92559d4fed&imgtype=0&src=http%3A%2F%2Fqqpublic.qpic.cn%2Fqq_public%2F0%2F0-3051271434-7CD2C743A02BAAAF17C501C2D40D68EE%2F0%3Ffmt%3Djpg%26size%3D75%26h%3D640%26w%3D557%26ppv%3D1"-->
+    <img v-bind:src="mySrc" v-bind:alt="myAlt" v-bind:title="myTitle" v-bind:class="{pic: flag}" />
+    <input type="button" value="点击更换图片样式" v-on:click="show" />
+    <input type="button" value="点击更换图片" v-on:click="changeImg" />
+</div>
+<script>
+    let app01 = new Vue({
+        el: "#div01",
+        data: {
+            message: "I am Bian Ruibiao",
+            flag: true,
+        },
+        methods: {
+            show() {
+                this.flag = !this.flag
+            }
+        },
+    })
+
+    let app02 = new Vue({
+        el: "#div02",
+        data: {
+            message: {
+                name: "Ruibiao",
+                age: 21,
+                school: "tyut",
+            },
+            flag: true,
+            val: "点击后美国消失",
+        },
+        methods: {
+            show() {
+                this.flag = !this.flag
+                if(this.flag) {
+                    this.val = "点击后美国出现"
+                } else {
+                    this.val = "点击后美国消失"
+                }
+            }
+        }
+    })
+
+    let app03 = new Vue({
+        el: "#div03",
+        data: {
+            mySrc: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1603201487871&di=de77988a92a5795de7d77591421c2068&imgtype=0&src=http%3A%2F%2Fqqpublic.qpic.cn%2Fqq_public%2F0%2F0-2335518777-E8DA9058CDBF381AF37564F03A4F03CC%2F0%3Ffmt%3Djpg%26size%3D99%26h%3D615%26w%3D627%26ppv%3D1",
+            myAlt: "我爱杨幂",
+            myTitle: "我爱杨幂",
+            flag: true,
+        },
+        methods: {
+            show() {
+                this.flag = !this.flag
+            },
+            changeImg() {
+                if(this.mySrc === "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1603201487871&di=de77988a92a5795de7d77591421c2068&imgtype=0&src=http%3A%2F%2Fqqpublic.qpic.cn%2Fqq_public%2F0%2F0-2335518777-E8DA9058CDBF381AF37564F03A4F03CC%2F0%3Ffmt%3Djpg%26size%3D99%26h%3D615%26w%3D627%26ppv%3D1") {
+                    this.mySrc = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1603201581508&di=9fef6cad16ece4c97b07da92559d4fed&imgtype=0&src=http%3A%2F%2Fqqpublic.qpic.cn%2Fqq_public%2F0%2F0-3051271434-7CD2C743A02BAAAF17C501C2D40D68EE%2F0%3Ffmt%3Djpg%26size%3D75%26h%3D640%26w%3D557%26ppv%3D1"
+                } else {
+                    this.mySrc = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1603201487871&di=de77988a92a5795de7d77591421c2068&imgtype=0&src=http%3A%2F%2Fqqpublic.qpic.cn%2Fqq_public%2F0%2F0-2335518777-E8DA9058CDBF381AF37564F03A4F03CC%2F0%3Ffmt%3Djpg%26size%3D99%26h%3D615%26w%3D627%26ppv%3D1"
+                }
+            },
+
+        },
+    })
+</script>
+</body>
+</html>

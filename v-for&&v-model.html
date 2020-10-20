@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.min.js"></script>
+</head>
+<body>
+<div id="div01">
+    <ul>
+        <li v-for="(value, key, index) in obj" v-bind:key="index">值：{{ value }}，键：{{ key }}，索引：{{ index }}</li>
+    </ul>
+</div>
+
+<div id="div02">
+    <input type="text" v-model="message" />
+    <h1>{{ message }}</h1>
+</div>
+
+<script>
+    let app01 = new Vue({
+        el: "#div01",
+        data: {
+            obj: {
+                "name": "Ruibiao",
+                "age": 21,
+                "school": "tyut",
+                "gender": "male",
+            },
+            lst : [1, 2, 3],
+        },
+        methods: {
+
+        },
+    })
+
+    let app02 = new Vue({
+        el: "#div02",
+        data: {
+            message: "",
+        },
+        methods: {
+            changeValue() {
+                this.message = "pass"
+            }
+        }
+    })
+    /**
+     * 使用v-model可以实现数据与页面的双向绑定
+     * 双向绑定：
+     * （1）表单中数据发生变化导致vue实例中的data数据发生变化
+     * （2）vue实例中的data发生变化导致表单中数据发生变化
+     * **/
+</script>
+
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.min.js"></script>
+</head>
+<body>
+
+<div id="div01">
+    <textarea cols="60" rows="20" v-model="tmpComment">
+
+    </textarea>
+
+
+<!--    <input type="text" v-model="tmpComment" />-->
+    <input type="button" value="保存留言" v-on:click="saveComment" />
+    <ul>
+        <li v-for="(comment, index) in comments" on-bind="index">
+            <h3>{{ comment }}&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0);" v-on:click="delComment(index)">删除该留言</a></h3>
+        </li>
+    </ul>
+    <h3>当前共计留言{{ comments.length }}条</h3>
+    <input type="button" value="删除所有留言" v-on:click="delAllComment" v-show="flag" />
+</div>
+
+<script>
+    let app01 = new Vue({
+        el: "#div01",
+        data: {
+            comments: ["卞瑞彪爱中国", "卞瑞彪爱日本", ],
+            tmpComment: "",
+            flag: true,
+        },
+        methods: {
+            saveComment() {
+                if(this.tmpComment) {
+                    this.comments.unshift(this.tmpComment)
+                    this.tmpComment = ""
+                }
+            },
+            delComment(index) {
+                this.comments.splice(index, 1)
+            },
+            delAllComment() {
+                this.comments.splice(0, this.comments.length)
+                this.flag = false
+            }
+        }
+    })
+</script>
+</body>
+</html>
