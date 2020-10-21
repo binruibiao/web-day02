@@ -41,6 +41,9 @@
             },
             delComment(index) {
                 this.comments.splice(index, 1)
+                if(!this.comments.length) {
+                    this.flag = false
+                }
             },
             delAllComment() {
                 this.comments.splice(0, this.comments.length)
